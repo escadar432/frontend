@@ -3,84 +3,84 @@ import { storageService } from '../async-storage.service'
 import { makeId } from '../util.service'
 import { userService } from '../user'
 
-const STORAGE_KEY = 'story'
+const STORAGE_KEY = 'post'
 
-export const storyService = {
+export const postService = {
     query,
     getById,
     save,
     remove,
-    addStoryMsg
+    addPostMsg
 }
-window.cs = storyService
+window.cs = postService
 
 
 async function query(filterBy = { txt: '', price: 0 }) {
-    var storys = await storageService.query(STORAGE_KEY)
+    var posts = await storageService.query(STORAGE_KEY)
     const { txt, sortField, sortDir } = filterBy
 
     if (txt) {
         const regex = new RegExp(filterBy.txt, 'i')
-        storys = storys.filter(story => regex.test(story.vendor) || regex.test(story.description))
+        posts = posts.filter(post => regex.test(post.vendor) || regex.test(post.description))
     }
     
     if(sortField === 'vendor' || sortField === 'owner'){
-        storys.sort((story1, story2) => 
-            story1[sortField].localeCompare(story2[sortField]) * +sortDir)
+        posts.sort((post1, post2) => 
+            post1[sortField].localeCompare(post2[sortField]) * +sortDir)
     }
     if(sortField === 'price' || sortField === 'speed'){
-        storys.sort((story1, story2) => 
-            (story1[sortField] - story2[sortField]) * +sortDir)
+        posts.sort((post1, post2) => 
+            (post1[sortField] - post2[sortField]) * +sortDir)
     }
     
-    storys = storys.map(({ _id, vendor, price, speed, owner }) => ({ _id, vendor, price, speed, owner }))
-    return storys
+    posts = posts.map(({ _id, vendor, price, speed, owner }) => ({ _id, vendor, price, speed, owner }))
+    return posts
 }
 
-function getById(storyId) {
-    return storageService.get(STORAGE_KEY, storyId)
+function getById(postId) {
+    return storageService.get(STORAGE_KEY, postId)
 }
 
-async function remove(storyId) {
+async function remove(postId) {
     // throw new Error('Nope')
-    await storageService.remove(STORAGE_KEY, storyId)
+    await storageService.remove(STORAGE_KEY, postId)
 }
 
-async function save(story) {
-    var savedStory
-    if (story._id) {
-        const storyToSave = {
-            _id: story._id
+async function save(post) {
+    var savedPost
+    if (post._id) {
+        const postToSave = {
+            _id: post._id
         }
-        savedStory = await storageService.put(STORAGE_KEY, storyToSave)
+        savedPost = await storageService.put(STORAGE_KEY, postToSave)
     } else {
-        const storyToSave = {
-            txt: story.txt,
+        const postToSave = {
+            txt: post.txt,
             // Later, owner is set by the backend
             owner: userService.getLoggedinUser(),
             msgs: []
         }
-        savedStory = await storageService.post(STORAGE_KEY, storyToSave)
+        savedPost = await storageService.post(STORAGE_KEY, postToSave)
     }
-    return savedStory
+    return savedPost
 }
 
-async function addStoryMsg(storyId, txt) {
+async function addPostMsg(postId, txt) {
     // Later, this is all done by the backend
-    const story = await getById(storyId)
+    const post = await getById(postId)
 
     const msg = {
         id: makeId(),
         by: userService.getLoggedinUser(),
         txt
     }
-    story.msgs.push(msg)
-    await storageService.put(STORAGE_KEY, story)
+    post.msgs.push(msg)
+    await storageService.put(STORAGE_KEY, post)
 
     return msg
 }
 
-const story = {
+const post = {
 	_id: 's101',
 	txt: 'Lake trip with the best 🩷',
 	imgUrl: 'http://some-img',
@@ -139,11 +139,11 @@ const story = {
 
 
 
-// Feed
+// Timeline
 
 const loggedinUser = usersCollection.find({ _id: loggedinUser._id })
 const following = loggedinUser.following.map(user => user._id)
-const feed = storiesCollection.find({ 'by._id': { $in: following } }).sort({ _id: -1 })
+const timeline = storiesCollection.find({ 'by._id': { $in: following } }).sort({ _id: -1 })
 
 const myPosts = storiesCollection.find({ 'by._id': loggedinUser._id }).sort({ _id: -1 })
 

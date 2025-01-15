@@ -1,10 +1,15 @@
-import { Sidenav } from "../cmps/Sidenav";
-import { Story } from "../cmps/Story";
+import { Timeline } from "../cmps/Timeline.jsx";
+import { Sidenav } from "../cmps/Sidenav.jsx";
 export function HomePage() {
-    return (
-        <div className="home-page flex">
-            <Sidenav className="sidebar"/>
-            <Story /> 
-        </div >
-    )
+  return (
+    <div className="homepage flex">
+      <div className="homepage_nav">
+        {/* <InstegramCameraIcon /> */}
+        <Sidenav />
+      </div>
+      <div className="homepage_timeline">
+        <Timeline />
+      </div>
+    </div>
+  );
 }

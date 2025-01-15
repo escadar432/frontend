@@ -9,14 +9,13 @@ import { AppFooter } from './cmps/AppFooter'
 
 export function RootCmp() {
     return (
-        <div className="main-container">
-            <AppHeader />
-
-            <main>
+        <div className='app flex column'>
+            <AppHeader className="app-header flex"/>
+            <main className="main-content">
                 <Routes>
                     <Route path="" element={<HomePage />} />
             
-                    {/* <Route path="story/:storyId" element={<StoryDetails />} />
+                    {/* <Route path="post/:postId" element={<PostDetails />} />
                     <Route path="user/:id" element={<UserDetails />} />
                     <Route path="review" element={<ReviewIndex />} />
                     <Route path="chat" element={<ChatApp />} />

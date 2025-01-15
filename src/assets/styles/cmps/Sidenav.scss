@@ -1,0 +1,45 @@
+.sidenav {
+    position: fixed;
+    z-index: 1;
+    height: 100vh;
+
+    padding-inline: 12px;
+    padding-block-start: 8px;
+    padding-block-end: 20px;
+   
+    .sidenav_logo{
+        padding-inline: 12px;
+        padding-block-start: 25px;
+        padding-block-end: 16px;
+        margin: 20px;
+    }
+    .sidenav_button {
+        margin-block: 4px;
+        padding: 12px;
+        cursor: pointer;
+
+
+        button {
+            display: flex;
+            align-items: center;
+            border: none;
+           
+            background-color: transparent;
+
+            span {
+                margin-left: 16px; // Targets the text inside the span
+                line-height: 18px;
+                font-size: 14px;
+                text-size-adjust: 100%;
+                text-align: start;
+            }
+            &:hover {
+                border-radius: 8px;
+                background-color: rgba(255, 255, 255, 0.1);
+
+            }
+        }
+    }
+
+   
+}

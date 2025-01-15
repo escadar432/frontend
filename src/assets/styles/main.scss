@@ -1,1 +1,11 @@
 @import 'basics/base';
+@import 'basics/helpers';
+
+//pages
+@import 'cmps/Homepage';
+
+
+//cmps
+@import 'cmps/Timeline';
+@import 'cmps/Suggestions';
+@import 'cmps/Sidenav';

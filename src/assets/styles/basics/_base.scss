@@ -3,17 +3,16 @@
 }
 
 html {
-    line-height: 1.6;
     font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     overflow-x: hidden;
     overflow-y: hidden;
-
+    align-items: center;
+    align-self: center;
 }
 
 body {
-    max-width: 1024px;
+    max-width: 100%;
     margin: 0 auto;
-
 }
 
 h1,

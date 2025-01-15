@@ -113,6 +113,6 @@ const user = {
 			imgUrl: 'http://some-img',
 		},
 	],
-	likedStoryIds: ['s105', 's122', 's173'], // can also use mini-stories { _id, imgUrl }
-	savedStoryIds: ['s104', 's111', 's423'], // can also use mini-stories { _id, imgUrl }
+	likedPostIds: ['s105', 's122', 's173'], // can also use mini-stories { _id, imgUrl }
+	savedPostIds: ['s104', 's111', 's423'], // can also use mini-stories { _id, imgUrl }
 }
