@@ -15,7 +15,19 @@ export const postService = {
 window.cs = postService
 
 
+
+// Timeline
+
+// const loggedinUser = usersCollection.find({ _id: loggedinUser._id })
+// const following = loggedinUser.following.map(user => user._id)
+// const timeline = storiesCollection.find({ 'by._id': { $in: following } }).sort({ _id: -1 })
+
+// const myPosts = storiesCollection.find({ 'by._id': loggedinUser._id }).sort({ _id: -1 })
+
+
+
 async function query(filterBy = { txt: '', price: 0 }) {
+	if (!storageService.get(STORAGE_KEY)) return gPosts
     var posts = await storageService.query(STORAGE_KEY)
     const { txt, sortField, sortDir } = filterBy
 
@@ -28,10 +40,7 @@ async function query(filterBy = { txt: '', price: 0 }) {
         posts.sort((post1, post2) => 
             post1[sortField].localeCompare(post2[sortField]) * +sortDir)
     }
-    if(sortField === 'price' || sortField === 'speed'){
-        posts.sort((post1, post2) => 
-            (post1[sortField] - post2[sortField]) * +sortDir)
-    }
+ 
     
     posts = posts.map(({ _id, vendor, price, speed, owner }) => ({ _id, vendor, price, speed, owner }))
     return posts
@@ -80,7 +89,7 @@ async function addPostMsg(postId, txt) {
     return msg
 }
 
-const post = {
+const gPosts = {
 	_id: 's101',
 	txt: 'Lake trip with the best 🩷',
 	imgUrl: 'http://some-img',
@@ -136,15 +145,5 @@ const post = {
 	],
 	tags: ['fun', 'romantic'],
 }
-
-
-
-// Timeline
-
-const loggedinUser = usersCollection.find({ _id: loggedinUser._id })
-const following = loggedinUser.following.map(user => user._id)
-const timeline = storiesCollection.find({ 'by._id': { $in: following } }).sort({ _id: -1 })
-
-const myPosts = storiesCollection.find({ 'by._id': loggedinUser._id }).sort({ _id: -1 })
 
 

@@ -1,45 +1,69 @@
+$breakpoint: 1250px;
+
+$padding-inline: 12px;
+$padding-block-start: 8px;
+$padding-block-end: 20px;
+$button-border-color: rgb(61, 129, 66);
+
 .sidenav {
-    position: fixed;
-    z-index: 1;
-    height: 100vh;
+  position: fixed;
+  z-index: 1;
+  height: 100vh;
+  padding: $padding-block-start $padding-inline $padding-block-end;
+  outline: 1px solid rgb(201, 198, 198);
 
-    padding-inline: 12px;
-    padding-block-start: 8px;
-    padding-block-end: 20px;
-   
-    .sidenav_logo{
-        padding-inline: 12px;
-        padding-block-start: 25px;
-        padding-block-end: 16px;
-        margin: 20px;
+
+  .sidenav_logo {
+    padding: 25px $padding-inline 16px 0;
+    margin: 20px 0 0 0;
+    border: 1px solid red;
+  }
+
+  .sidenav_button {
+    margin-block: 4px;
+    padding: 12px;
+    cursor: pointer;
+
+    button {
+      display: flex;
+      align-items: center;
+      border: none;
+      background-color: transparent;
+
+      span {
+        margin-left: 16px;
+        line-height: 18px;
+        font-size: 14px;
+        text-size-adjust: 100%;
+        text-align: start;
+      }
+
+      &:hover {
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
     }
+  }
+
+  @media screen and (max-width: $breakpoint) {
+    .button-text {
+      display: none;
+    }
+
     .sidenav_button {
-        margin-block: 4px;
-        padding: 12px;
-        cursor: pointer;
-
-
-        button {
-            display: flex;
-            align-items: center;
-            border: none;
-           
-            background-color: transparent;
-
-            span {
-                margin-left: 16px; // Targets the text inside the span
-                line-height: 18px;
-                font-size: 14px;
-                text-size-adjust: 100%;
-                text-align: start;
-            }
-            &:hover {
-                border-radius: 8px;
-                background-color: rgba(255, 255, 255, 0.1);
-
-            }
-        }
+      height: 60px;
+      width: 55px;
     }
 
-   
+    width:max-content;
+    ::after {
+      content: "";
+      position: fixed;
+      right: 0;
+      height: 100vh;
+    }
+
+    padding-inline-start: 0px;
+    margin-inline-start: 0px;
+  }
 }

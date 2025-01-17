@@ -1,4 +1,4 @@
-import { postService } from '../../services/post'
+import { postService } from '../../services/story/index.js'
 import { store } from '../store'
 import { ADD_POST, REMOVE_POST, SET_POSTS, SET_POST, UPDATE_POST, ADD_POST_MSG } from '../reducers/post.reducer'
 

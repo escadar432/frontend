@@ -10,7 +10,7 @@ import ExploreIcon from "./svgIcons/ExploreIcon.jsx";
 export function Sidenav() {
   return (
     <section className="sidenav flex column">
-      <div className="sidenav_logo">
+      {/* <div className="sidenav_logo">
         <svg
           aria-label="Instagram"
           className="x1lliihq x1n2onr6 x5n08af"
@@ -28,58 +28,58 @@ export function Sidenav() {
             fillRule="evenodd"
           ></path>
         </svg>
-      </div>
+      </div> */}
 
-      <div className="sidenav_buttons  space-between">
+      <div className="sidenav_buttons flex column">
         <div className="sidenav_button">
           <button>
             <HomeIcon />
-            <span>Home </span>
+            <span className="button-text">Home </span>
           </button>
         </div>
         <div className="sidenav_button">
           <button>
             <SearchIcon />
-            <span> Search </span>
+            <span className="button-text"> Search </span>
           </button>
         </div>
         <div className="sidenav_button">
           <button>
             <ExploreIcon />
-            <span> Explore</span>
-          </button>
+            <span className="button-text"> Explore</span>
+          </button> 
         </div>
         <div className="sidenav_button">
           <button>
             <ReelsIcon />
-            <span>Reels</span>
+            <span className="button-text">Reels</span>
           </button>
         </div>{" "}
         <div className="sidenav_button">
           <button>
             <DirectMsgIcon />
-            <span>Messages</span>
+            <span className="button-text">Messages</span>
           </button>
         </div>{" "}
         <div className="sidenav_button">
           <button>
             <NotificationIcon />
-            <span>Notification</span>
+            <span className="button-text">Notification</span>
           </button>
         </div>{" "}
         <div className="sidenav_button">
           <button>
             <NewPostIcon />
-            <span>Create</span>
+            <span className="button-text">Create</span>
           </button>
         </div>{" "}
         <div className="sidenav_button">
           <button>
             <SettingsIcon />
-            <span>More</span>
+            <span className="button-text">More</span>
           </button>
         </div>
       </div>
     </section>
-  );
+  )
 }
