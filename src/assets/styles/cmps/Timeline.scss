@@ -1,14 +1,17 @@
-.timeline {
-    display: flex;
+.timeline-feed {
     height: 100vh;
+    border: 2px solid  blueviolet;
+
   
-    & .timeline_left {
+    &.left {
       flex: 0.7;
+      border: 10px solid  rgb(129, 34, 34);
     }
   
-    & .timeline_right {
+    &.right {
       flex: 0.3;
       border: 1px solid #292121;
+
     }
   }
   
