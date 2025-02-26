@@ -1,0 +1,17 @@
+.side-nav {
+    position: fixed;
+    width: 245px;
+    height: 100vh;
+    border-right: 1px solid $border-color;
+    padding: $spacing-large;
+    
+    .nav-logo {
+      margin-bottom: $spacing-large;
+    }
+    
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: $spacing-medium;
+    }
+  }

@@ -8,6 +8,8 @@ export const postService = {
     addPostMsg
 }
 
+console.log("Im in Remote Service");
+
 async function query(filterBy = { txt: '', price: 0 }) {
     return httpService.get(`post`, filterBy)
 }

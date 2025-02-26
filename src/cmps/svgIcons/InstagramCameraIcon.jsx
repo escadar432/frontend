@@ -1,4 +1,4 @@
-export function InstegramCameraIcon() {
+export default function InstagramCameraIcon() {
   return (
     <div className="camera_icon">
       <svg

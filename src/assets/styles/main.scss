@@ -1,14 +1,10 @@
-@import 'basics/base';
-@import 'basics/helpers';
+@use 'basics/_vars'; 
+@use 'basics/base';
+@use 'basics/helpers';
+// @use 'basics/layout';
 
-// //pages
-// @import 'cmps/Homepage';
+// @use  "cpm/side-nav";
+// @use "cmps/feed";
+// @use "cmps/suggested";
 
-
-// //cmps
-// @import 'cmps/Timeline';
-// @import 'cmps/Suggestions';
-// @import 'cmps/Sidenav';
-// @import 'cmps/Storys';
-
-@import 'demo'
+@use "demo";

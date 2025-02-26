@@ -1,10 +1,10 @@
-import { Post } from "./Post.jsx";
 import { Suggestions } from "./Suggestions.jsx";
 export function Timeline() {
+  console.log('Timeline:')
+  
   return (
-    <section className="timeline-feed flex">
+    <section className="">
       <div >
-        <Post />
       </div>
       <div >
         <Suggestions />
