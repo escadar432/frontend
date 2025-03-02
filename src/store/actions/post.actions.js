@@ -10,7 +10,6 @@ import {
 } from "../reducers/post.reducer";
 
 export async function loadPosts() {
-  console.log("im in the post action file");
   
   try {
     const posts = await postService.query()    

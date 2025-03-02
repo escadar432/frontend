@@ -26,7 +26,6 @@ async function query(filterBy = { txt: "" }) {
   try {
     let posts = await storageService.query(STORAGE_KEY);
     const { txt, sortField, sortDir } = filterBy;
-    console.log("the posts from service local are:", posts)
     
     return posts
   } catch (error) {

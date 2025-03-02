@@ -16,7 +16,6 @@ export function postReducer(state = initialState, action) {
     switch (action.type) {
         case SET_POSTS:
             newState = { ...state, posts: action.posts }
-            console.log("New posts is", newState)
             
             break
         case SET_POST:

@@ -7,14 +7,11 @@ import { loadPosts } from "../store/actions/post.actions.js";
 import { Storys } from "../cmps/Storys.jsx";
 
 export function PostIndex() {
-  console.log("in inside an index page");
 
   const posts = useSelector((state) => state.postModule.posts);
   useEffect(() => {
     loadPosts();
   }, [])
-
-  console.log("posts:", posts);
 
   if (!posts) return <div>Loading PostIndex...</div>;
   return (

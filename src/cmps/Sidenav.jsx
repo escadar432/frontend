@@ -7,6 +7,7 @@ import ReelsIcon from "./svgIcons/Reels.jsx";
 import SettingsIcon from "./svgIcons/Settings.jsx";
 import ExploreIcon from "./svgIcons/ExploreIcon.jsx";
 import HomeOrNameLogo from "./HomeOrNameLogo.jsx";
+import { SidebarAvatar } from "./SidebarAvatar.jsx";
 
 const menuitems = {
   home: HomeIcon,
@@ -16,10 +17,14 @@ const menuitems = {
   messages: DirectMsgIcon,
   notifications: NotificationIcon,
   createPost: NewPostIcon,
+  // profile: ProfileImage => call a cmp that generates profile image based 
+  profile: SidebarAvatar,
   settings: SettingsIcon,
 };
 
 export function Sidenav() {
+  const profPicSize = 24
+   
   return (
     <section className="sidenav  flex column">
       <div className="logo center">
@@ -35,11 +40,12 @@ export function Sidenav() {
               aria-label={`Navigate to ${itemName}`}
               title={`Navigate to ${itemName}`}
             >
-              <Icon className="menu-icon" />
+              <Icon className="menu-icon" profPicSize={profPicSize} />
               <span className="menu-btn-text">{itemName}</span>
             </button>
           </div>
         ))}
+        
       </nav>
     </section>
   );
