@@ -1,3 +1,4 @@
+import React from "react";
 import BookmarkIcon from "./svgIcons/BookmarkIcon.jsx";
 import CommentsIcon from "./svgIcons/Comments.jsx";
 import DirectMsgIcon from "./svgIcons/DirectMsgIcon.jsx";
@@ -6,10 +7,9 @@ import NotificationIcon from "./svgIcons/NotificationIcon.jsx";
 
 export function Post({ posts }) {
   if (!posts || posts.length === 0) {
-    return <div className="no-posts">No posts available.</div>;
+    return <p className="no-posts">No posts available.</p>;
   }
 
-  // Remove this after backend implementation
   const timeAgo = (createdAt) => {
     const seconds = Math.floor((Date.now() - new Date(createdAt)) / 1000);
     if (seconds < 60) return `${seconds}s`;
@@ -21,86 +21,126 @@ export function Post({ posts }) {
     return `${Math.floor(seconds / 31536000)}y`;
   };
 
+  console.log("posts: ", posts);
+  
   return (
-    <div className="post-container">
+    <section className="post-container flex" aria-label="User Posts">
       {posts.map((post, index) => (
-        <div key={post.id || `post-${index}`} className="post-card">
+        <article
+          key={post.id || `post-${index}`}
+          className="post-card"
+          aria-labelledby={`post-author-${index}`}
+        >
           {/* Header */}
-          <div className="post-header">
-            <div className="author author-name">
-              <img
-                className="avatar"
-                src={post.by?.imgUrl || "/default-avatar.png"}
-                alt={post.by?.fullname || "User"}
-              />
-              <div className="author-details">
-                <span className="author-name">{post.by?.fullname}</span>
-                <span className="post-time">&bull; {timeAgo(post.createdAt)}</span>
+          <header className="post-header">
+            <div className="author-info flex">
+                <img
+                  className="avatar"
+                  src={post.by?.imgUrl || "/default-avatar.png"}
+                  alt={`Profile of ${post.by?.username || "User"}`}
+                />
+
+              <div className="author-details flex">
+               {/* todo center username */}
+                <h2 id={`post-author-${index}`} className="author-name">
+                  {post.by?.username}
+                </h2>
+                <div className="time-posted">
+                  {/*todo  hover: show dd/mm/yy date*/}
+                  <time dateTime={new Date(post.createdAt).toISOString()}>
+                    &bull; {timeAgo(post.createdAt)}
+                  </time>
+                </div>
               </div>
             </div>
-            <div className="post-options">
+            <button className="post-options" aria-label="Post options">
               <MoreOptions />
-            </div>
-          </div>
+            </button>
+          </header>
 
           {/* Image */}
-          <div className="post-image">
-            <img src={post.imgUrl} alt={post.txt || "Post content"} />
-          </div>
+          <figure className="post-image">
+            <img
+              src={post.imgUrl}
+              alt={post.title || "Post content"}
+              loading="lazy"
+            />
+          </figure>
 
           {/* Footer */}
-          <div className="post-footer">
-            <div className="post-icons">
-              <div className="icons-left">
-                <NotificationIcon />
-                <CommentsIcon />
-                <DirectMsgIcon />
+          <footer className="post-footer">
+            <div className="post-interactions">
+              <div className="post-actions" aria-label="Post interactions">
+                <button aria-label="Notifications">
+                  <NotificationIcon />
+                </button>
+                <button aria-label="Comments">
+                  <CommentsIcon />
+                </button>
+                <button aria-label="Direct Message">
+                  <DirectMsgIcon />
+                </button>
               </div>
-              <div className="icon-save">
+              <button className="save-action" aria-label="Save post">
                 <BookmarkIcon />
-              </div>
+              </button>
             </div>
 
-            <div className="num-likes">
-              {post.likedBy.length > 0 && `${post.likedBy.length} likes`}
+            {post.likedBy.length > 0 && (
+              <p className="num-likes" aria-live="polite">
+                {post.likedBy.length} likes
+              </p>
+            )}
+
+            <div className="post-caption">
+              <strong className="author-name">{post.by?.username}</strong>
+              <span className="post-title">{post.title}</span>
             </div>
 
-            <div>
-              <span className="author-name">{post.by?.fullname}</span>
-              <span className="post-txt">{post.txt}</span>
-            </div>
-
-            {/* Comments */}
-            <div className="post-comments">
+            {/* Comments Section */}
+            <section className="post-comments">
               {post.comments?.length > 0 && (
-                <div className="view-all-comments">
-                  <span>View all {post.comments.length} comments</span>
-                </div>
+                <button className="view-all-comments" aria-expanded="false">
+                  View all {post.comments.length} comments
+                </button>
               )}
-            </div>
 
-            <div className="add-comment">
-              <input placeholder="Add a comment..." />
-            </div>
-
-            <div className="post-comments hide">
-              {post.comments?.map((comment, idx) => (
-                <div key={comment.id || `comment-${idx}`} className="comment">
-                  <img
-                    className="avatar small"
-                    src={comment.by?.imgUrl || "/default-avatar.png"}
-                    alt={comment.by?.fullname || "User"}
-                  />
-                  <div className="comment-text">
-                    <span className="comment-author">{comment.by?.fullname}</span>
-                    {comment.txt}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+              {post.comments?.length > 0 && (
+                <ul className="comments-list hide ">
+                  {post.comments.map((comment, idx) => (
+                    <li
+                      key={comment.id || `comment-${idx}`}
+                      className="comment"
+                    >
+                      <img
+                        className="avatar small"
+                        src={comment.by?.imgUrl || "/default-avatar.png"}
+                        alt={`Profile of ${comment.by?.username || "User"}`}
+                      />
+                      <div className="comment-content">
+                        <strong className="comment-author">
+                          {comment.by?.username}
+                        </strong>
+                        <p className="comment-text">{comment.txt}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              <form className="add-comment" aria-label="Add a comment">
+                      <input
+                  id={`comment-input-${index}`}
+                  type="text"
+                  placeholder="Add a comment..."
+                  className="comment-input"
+                />
+              </form>
+            </section>
+          </footer>
+        </article>
       ))}
-    </div>
+    </section>
   );
 }
+
+export default Post;

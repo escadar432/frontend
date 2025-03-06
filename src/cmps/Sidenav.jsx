@@ -13,13 +13,13 @@ const menuitems = {
   home: HomeIcon,
   search: SearchIcon,
   explore: ExploreIcon,
-  reels: ReelsIcon,
+  reels: ReelsIcon, //TODO -> change icon to outline
   messages: DirectMsgIcon,
   notifications: NotificationIcon,
-  createPost: NewPostIcon,
+  create: NewPostIcon,
   // profile: ProfileImage => call a cmp that generates profile image based 
   profile: SidebarAvatar,
-  settings: SettingsIcon,
+  more: SettingsIcon,
 };
 
 export function Sidenav() {

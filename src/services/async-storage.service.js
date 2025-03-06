@@ -11,12 +11,12 @@ export const storageService = {
 let gPosts = [
   {
     _id: "s101",
-    txt: "Lake trip with the best 🩷",
+    title: "Lake trip with the best 🩷",
     imgUrl: "https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0",
     createdAt: Date.now(),
     by: {
       _id: "u101",
-      fullname: "sunflower_power77",
+      username: "sunflower_power77",
       imgUrl: "https://randomuser.me/api/portraits/women/67.jpg", // Random user avatar
     },
     loc: {
@@ -29,14 +29,14 @@ let gPosts = [
         id: "c1001",
         by: {
           _id: "u105",
-          fullname: "Bob",
+          username: "Bob",
           imgUrl: "https://randomuser.me/api/portraits/men/5.jpg",
         },
         txt: "good one!",
         likedBy: [
           {
             _id: "u105",
-            fullname: "Bob",
+            username: "Bob",
             imgUrl: "https://randomuser.me/api/portraits/men/5.jpg",
           },
         ],
@@ -45,7 +45,7 @@ let gPosts = [
         id: "c1002",
         by: {
           _id: "u106",
-          fullname: "Dob",
+          username: "Dob",
           imgUrl: "https://randomuser.me/api/portraits/men/6.jpg",
         },
         txt: "not good!",
@@ -54,12 +54,12 @@ let gPosts = [
     likedBy: [
       {
         _id: "u105",
-        fullname: "Bob",
+        username: "Bob",
         imgUrl: "https://randomuser.me/api/portraits/men/5.jpg",
       },
       {
         _id: "u106",
-        fullname: "Dob",
+        username: "Dob",
         imgUrl: "https://randomuser.me/api/portraits/men/6.jpg",
       },
     ],
@@ -68,12 +68,12 @@ let gPosts = [
   },
   {
     _id: "s102",
-    txt: "I'm a post demo",
+    title: "I'm a post demo",
     imgUrl: "https://as2.ftcdn.net/jpg/03/10/42/27/1000_F_310422728_gvGj4cxa8MZDbJOPws9MgQXUslt7jpxF.jpg", // Random aesthetic image
     createdAt: Date.now(),
     by: {
       _id: "u101",
-      fullname: "sunflower_power77",
+      username: "sunflower_power77",
       imgUrl: "https://randomuser.me/api/portraits/women/67.jpg",
     },
     comments: [],
